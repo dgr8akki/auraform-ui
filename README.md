@@ -1,5 +1,12 @@
 # Auraform UI
 
+[![npm: @auraform/core](https://img.shields.io/npm/v/@auraform/core?label=%40auraform%2Fcore&color=blue)](https://www.npmjs.com/package/@auraform/core)
+[![npm: @auraform/react](https://img.shields.io/npm/v/@auraform/react?label=%40auraform%2Freact&color=blue)](https://www.npmjs.com/package/@auraform/react)
+[![npm: @auraform/native](https://img.shields.io/npm/v/@auraform/native?label=%40auraform%2Fnative&color=blue)](https://www.npmjs.com/package/@auraform/native)
+[![npm downloads](https://img.shields.io/npm/dm/@auraform/react?label=downloads&color=green)](https://www.npmjs.com/package/@auraform/react)
+[![Storybook](https://img.shields.io/badge/Storybook-live-ff4785?logo=storybook&logoColor=white)](https://dgr8akki.github.io/auraform-ui/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 An accessibility-first Neumorphic UI component library for **React** and **React Native**.
 
 Auraform solves the core problems of traditional neumorphism — poor contrast, ambiguous states, broken focus management, and limited color support — by baking WCAG-compliant accessibility directly into the design system.
