@@ -13,6 +13,8 @@ const preview: Preview = {
               padding: 40,
               background: baseColor,
               minHeight: "100vh",
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              color: "#333",
             }}
           >
             <Story />

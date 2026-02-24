@@ -74,58 +74,36 @@ function App() {
 
 ---
 
-## Components
+## Components (19 total)
 
-### `AuraformProvider` / `NativeAuraformProvider`
+### Provider & Primitives
+- **`AuraformProvider`** — Root context provider. Computes tokens from `baseColor` and injects CSS variables.
+- **`Surface`** — Base neumorphic building block with elevation and inset modes.
+- **`FocusRing`** — Accessible focus indicator overlay.
 
-Root context provider. Computes neumorphic tokens from `baseColor` and distributes them to all children.
+### Form Components
+- **`SoftButton`** — Tactile button with press animation and dual-signaling.
+- **`SoftInput`** — Inset text field with persistent bottom border.
+- **`SoftTextArea`** — Multi-line input with optional auto-resize.
+- **`SoftCheckbox`** — Checkbox with extruded→inset depth shift and SVG checkmark.
+- **`SoftRadioGroup` + `SoftRadio`** — Radio buttons with arrow-key navigation.
+- **`SoftSwitch`** — Toggle using depth + accent color for state.
+- **`SoftSlider`** — Range slider with inset track and draggable thumb.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `baseColor` | `string` | — | Base background color (hex) |
-| `intensity` | `number` | `15` | Shadow lightness shift percentage |
+### Display & Feedback
+- **`SoftCard`** — Semantic card with header/footer/media slots.
+- **`SoftProgress`** — Linear and circular progress (determinate + indeterminate).
+- **`SoftChip`** — Selectable/removable tag component.
+- **`SoftBadge`** — Notification count/dot overlay.
+- **`SoftAvatar`** — Image or initials avatar with fallback.
+- **`SoftDivider`** — Neumorphic groove separator.
 
-### `Surface`
+### Navigation
+- **`SoftTabs`** — Tab navigation with `SoftTabList`, `SoftTab`, `SoftTabPanel`.
+- **`SoftIconButton`** — Icon-only button (requires `aria-label`).
+- **`SoftTooltip`** — Floating tooltip on hover/focus.
 
-The base neumorphic building block. All other components inherit from its shadow/border logic.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `elevation` | `"flat" \| "low" \| "medium" \| "high"` | `"medium"` | Shadow depth |
-| `isInset` | `boolean` | `false` | Pressed/inset appearance |
-| `borderRadius` | `number` | `12` | Corner radius in pixels |
-
-### `SoftButton`
-
-Tactile button with press animation and dual-signaling.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `elevation` | `Elevation` | `"medium"` | Shadow depth |
-| `variant` | `"default" \| "primary"` | `"default"` | Visual style |
-| `accentColor` | `string` | `"#4A90D9"` | Primary variant accent |
-| `disabled` | `boolean` | `false` | Disabled state |
-
-### `SoftInput`
-
-Inset input field with a high-contrast bottom border.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `borderRadius` | `number` | `12` | Corner radius |
-| `accentColor` | `string` | `"#4A90D9"` | Focus border color |
-
-### `SoftSwitch`
-
-Toggle switch using physical depth and accent color to indicate state.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `checked` | `boolean` | — | Controlled checked state |
-| `defaultChecked` | `boolean` | `false` | Initial state (uncontrolled) |
-| `onChange` | `(checked: boolean) => void` | — | Change handler |
-| `accentColor` | `string` | `"#4A90D9"` | Active track color |
-| `disabled` | `boolean` | `false` | Disabled state |
+Full API docs: **[docs/components-react.md](./docs/components-react.md)**
 
 ---
 
@@ -193,22 +171,20 @@ auraform-ui/
 │   │       ├── contrast.ts     # WCAG luminance & contrast ratio
 │   │       ├── tokens.ts       # getNeumorphicTokens()
 │   │       └── types.ts        # TypeScript interfaces
-│   ├── react/         # @auraform/react — web components
+│   ├── react/         # @auraform/react — 19 web components
 │   │   ├── .storybook/
 │   │   └── src/
 │   │       ├── AuraformProvider.tsx
 │   │       ├── Surface.tsx
-│   │       ├── SoftButton.tsx
-│   │       ├── SoftInput.tsx
-│   │       ├── SoftSwitch.tsx
+│   │       ├── Soft*.tsx          # 15 component files
 │   │       ├── FocusRing.tsx
-│   │       └── stories/
+│   │       └── stories/           # Storybook stories for each
 │   └── native/        # @auraform/native — mobile components
 │       └── src/
 │           ├── NativeAuraformProvider.tsx
 │           ├── NativeSurface.tsx
 │           └── accessibility.ts
-├── docs/              # Design docs & project plan
+├── docs/              # Full documentation (API reference, theming, accessibility)
 ├── turbo.json
 └── pnpm-workspace.yaml
 ```

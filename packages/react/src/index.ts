@@ -22,5 +22,49 @@ export type { SoftInputProps } from "./SoftInput";
 export { SoftSwitch } from "./SoftSwitch";
 export type { SoftSwitchProps } from "./SoftSwitch";
 
+export { SoftCheckbox } from "./SoftCheckbox";
+export type { SoftCheckboxProps } from "./SoftCheckbox";
+
+export { SoftRadioGroup, SoftRadio } from "./SoftRadio";
+export type { SoftRadioGroupProps, SoftRadioProps } from "./SoftRadio";
+
+export { SoftTextArea } from "./SoftTextArea";
+export type { SoftTextAreaProps } from "./SoftTextArea";
+
+export { SoftSlider } from "./SoftSlider";
+export type { SoftSliderProps } from "./SoftSlider";
+
+export { SoftCard } from "./SoftCard";
+export type { SoftCardProps } from "./SoftCard";
+
+export { SoftProgress } from "./SoftProgress";
+export type { SoftProgressProps } from "./SoftProgress";
+
+export { SoftChip } from "./SoftChip";
+export type { SoftChipProps } from "./SoftChip";
+
+export { SoftBadge } from "./SoftBadge";
+export type { SoftBadgeProps } from "./SoftBadge";
+
+export { SoftIconButton } from "./SoftIconButton";
+export type { SoftIconButtonProps } from "./SoftIconButton";
+
+export { SoftTabs, SoftTabList, SoftTab, SoftTabPanel } from "./SoftTabs";
+export type {
+  SoftTabsProps,
+  SoftTabListProps,
+  SoftTabProps,
+  SoftTabPanelProps,
+} from "./SoftTabs";
+
+export { SoftTooltip } from "./SoftTooltip";
+export type { SoftTooltipProps } from "./SoftTooltip";
+
+export { SoftAvatar } from "./SoftAvatar";
+export type { SoftAvatarProps } from "./SoftAvatar";
+
+export { SoftDivider } from "./SoftDivider";
+export type { SoftDividerProps } from "./SoftDivider";
+
 // Re-export core types for convenience
 export type { Elevation, AuraformTokens } from "@auraform/core";

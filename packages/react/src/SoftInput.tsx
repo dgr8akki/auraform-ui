@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useRef } from "react";
 import { useAuraform } from "./AuraformProvider";
 import { FocusRing } from "./FocusRing";
 
@@ -23,6 +23,7 @@ export const SoftInput = forwardRef<HTMLInputElement, SoftInputProps>(
   ) {
     const { tokens } = useAuraform();
     const [isFocusVisible, setIsFocusVisible] = useState(false);
+    const pointerFocusRef = useRef(false);
 
     const insetShadow = `inset 4px 4px 8px ${tokens.darkShadow}, inset -4px -4px 8px ${tokens.lightShadow}`;
 
@@ -34,7 +35,7 @@ export const SoftInput = forwardRef<HTMLInputElement, SoftInputProps>(
             background: tokens.background,
             boxShadow: insetShadow,
             border: tokens.outline,
-borderBottom: `2px solid ${isFocusVisible ? accentColor : "rgba(0, 0, 0, 0.15)"}`,
+            borderBottom: "2px solid rgba(0, 0, 0, 0.12)",
             borderRadius,
             padding: "12px 16px",
             fontSize: "inherit",
@@ -45,8 +46,12 @@ borderBottom: `2px solid ${isFocusVisible ? accentColor : "rgba(0, 0, 0, 0.15)"}
             width: "100%",
             ...style,
           }}
+          onPointerDown={() => {
+            pointerFocusRef.current = true;
+          }}
           onFocus={(e) => {
-            if (e.target.matches(":focus-visible")) setIsFocusVisible(true);
+            if (!pointerFocusRef.current) setIsFocusVisible(true);
+            pointerFocusRef.current = false;
             inputProps.onFocus?.(e);
           }}
           onBlur={(e) => {
