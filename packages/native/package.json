@@ -1,6 +1,6 @@
 {
   "name": "@auraform/native",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Accessibility-first Neumorphic React Native components",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@auraform/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Core color math, shadow token generation, and contrast checking for Auraform UI",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
