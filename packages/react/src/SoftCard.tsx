@@ -113,7 +113,7 @@ export const SoftCard = forwardRef<HTMLElement, SoftCardProps>(
             <div
               style={{
                 padding: "8px 20px 16px",
-                borderTop: `1px solid rgba(0, 0, 0, 0.08)`,
+              borderTop: `1px solid ${tokens.borderSubtle}`,
               }}
             >
               {footer}

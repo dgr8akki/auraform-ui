@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftAvatar } from "../SoftAvatar";
 
 const meta: Meta<typeof SoftAvatar> = {
-  title: "Components/SoftAvatar",
+  title: "Display/SoftAvatar",
   component: SoftAvatar,
   argTypes: {
     size: { control: "select", options: ["sm", "md", "lg"] },

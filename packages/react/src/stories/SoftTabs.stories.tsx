@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftTabs, SoftTabList, SoftTab, SoftTabPanel } from "../SoftTabs";
 
 const meta: Meta<typeof SoftTabs> = {
-  title: "Components/SoftTabs",
+  title: "Navigation/SoftTabs",
   component: SoftTabs,
 };
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftSlider } from "../SoftSlider";
 
 const meta: Meta<typeof SoftSlider> = {
-  title: "Components/SoftSlider",
+  title: "Form/SoftSlider",
   component: SoftSlider,
   argTypes: {
     accentColor: { control: "color" },
@@ -37,7 +37,7 @@ export const Controlled: Story = {
     return (
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <SoftSlider {...args} value={val} onChange={setVal} />
-        <span style={{ color: "#555", fontSize: 14, minWidth: 30 }}>{val}</span>
+        <span style={{ fontSize: 14, minWidth: 30 }}>{val}</span>
       </div>
     );
   },

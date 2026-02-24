@@ -44,6 +44,7 @@ export const SoftChip = forwardRef<HTMLDivElement, SoftChipProps>(
     ref
   ) {
     const { tokens } = useAuraform();
+    const isDark = tokens.mode === "dark";
     const [internalSelected, setInternalSelected] = useState(defaultSelected);
     const [isFocusVisible, setIsFocusVisible] = useState(false);
 
@@ -129,7 +130,7 @@ export const SoftChip = forwardRef<HTMLDivElement, SoftChipProps>(
                 height: 16,
                 borderRadius: 8,
                 border: "none",
-                background: isSelected ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.1)",
+                background: isSelected ? "rgba(255,255,255,0.3)" : tokens.mode === "dark" ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)",
                 cursor: disabled ? "not-allowed" : "pointer",
                 padding: 0,
                 color: isSelected ? "white" : "inherit",

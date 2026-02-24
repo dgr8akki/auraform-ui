@@ -12,8 +12,13 @@ export interface RGBColor {
   b: number; // 0-255
 }
 
+/** Color mode for theming */
+export type ColorMode = "light" | "dark";
+
 /** Neumorphic design tokens generated from a base color */
 export interface AuraformTokens {
+  /** The resolved color mode */
+  mode: ColorMode;
   /** The original background color as hex */
   background: string;
   /** Lighter shadow color (highlight) as hex */
@@ -22,6 +27,12 @@ export interface AuraformTokens {
   darkShadow: string;
   /** Border to apply when contrast is insufficient, or "none" */
   outline: string;
+  /** Primary text color appropriate for the mode */
+  textColor: string;
+  /** Secondary/muted text color */
+  textSecondary: string;
+  /** Subtle border color for inputs, dividers, etc. */
+  borderSubtle: string;
 }
 
 /** Elevation levels for neumorphic components */

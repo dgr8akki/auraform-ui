@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftChip } from "../SoftChip";
 
 const meta: Meta<typeof SoftChip> = {
-  title: "Components/SoftChip",
+  title: "Display/SoftChip",
   component: SoftChip,
   argTypes: {
     label: { control: "text" },

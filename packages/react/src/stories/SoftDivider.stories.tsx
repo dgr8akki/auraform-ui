@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftDivider } from "../SoftDivider";
 
 const meta: Meta<typeof SoftDivider> = {
-  title: "Components/SoftDivider",
+  title: "Display/SoftDivider",
   component: SoftDivider,
   argTypes: {
     orientation: {

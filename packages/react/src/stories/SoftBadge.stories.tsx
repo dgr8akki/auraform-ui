@@ -4,7 +4,7 @@ import { SoftBadge } from "../SoftBadge";
 import { SoftIconButton } from "../SoftIconButton";
 
 const meta: Meta<typeof SoftBadge> = {
-  title: "Components/SoftBadge",
+  title: "Display/SoftBadge",
   component: SoftBadge,
   argTypes: {
     count: { control: "number" },

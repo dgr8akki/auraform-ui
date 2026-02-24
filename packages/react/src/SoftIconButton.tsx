@@ -72,7 +72,7 @@ export const SoftIconButton = forwardRef<HTMLButtonElement, SoftIconButtonProps>
             cursor: disabled ? "not-allowed" : "pointer",
             opacity: disabled ? 0.6 : 1,
             padding: 0,
-            color: "inherit",
+            color: tokens.textColor,
             fontSize: size * 0.45,
             outline: "none",
             ...style,

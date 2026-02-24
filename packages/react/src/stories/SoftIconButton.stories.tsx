@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftIconButton } from "../SoftIconButton";
 
 const meta: Meta<typeof SoftIconButton> = {
-  title: "Components/SoftIconButton",
+  title: "Navigation/SoftIconButton",
   component: SoftIconButton,
   argTypes: {
     elevation: {

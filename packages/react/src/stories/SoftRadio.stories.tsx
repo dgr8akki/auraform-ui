@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftRadioGroup, SoftRadio } from "../SoftRadio";
 
 const meta: Meta<typeof SoftRadioGroup> = {
-  title: "Components/SoftRadio",
+  title: "Form/SoftRadio",
   component: SoftRadioGroup,
   argTypes: {
     disabled: { control: "boolean" },
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof SoftRadioGroup>;
 
 export const Default: Story = {
   render: (args) => (
-    <SoftRadioGroup name="plan" defaultValue="basic" aria-label="Select plan" {...args}>
+    <SoftRadioGroup defaultValue="basic" aria-label="Select plan" {...args} name="plan">
       <SoftRadio value="basic" label="Basic" />
       <SoftRadio value="pro" label="Pro" />
       <SoftRadio value="enterprise" label="Enterprise" />
@@ -51,7 +51,7 @@ export const Controlled: Story = {
           <SoftRadio value="b" label="Option B" />
           <SoftRadio value="c" label="Option C" />
         </SoftRadioGroup>
-        <span style={{ color: "#555", fontSize: 14 }}>Selected: {value}</span>
+        <span style={{ fontSize: 14 }}>Selected: {value}</span>
       </div>
     );
   },

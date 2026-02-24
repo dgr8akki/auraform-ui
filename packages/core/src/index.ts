@@ -3,6 +3,7 @@ export type {
   HSLColor,
   RGBColor,
   AuraformTokens,
+  ColorMode,
   Elevation,
   ShadowConfig,
 } from "./types";

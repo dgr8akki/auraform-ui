@@ -118,7 +118,7 @@ export const SoftProgress = forwardRef<HTMLDivElement, SoftProgressProps>(
                 position: "absolute",
                 fontSize: size * 0.24,
                 fontWeight: 600,
-                color: "inherit",
+                color: tokens.textColor,
               }}
             >
               {Math.round(clampedValue)}%

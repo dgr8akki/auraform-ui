@@ -66,5 +66,26 @@ export type { SoftAvatarProps } from "./SoftAvatar";
 export { SoftDivider } from "./SoftDivider";
 export type { SoftDividerProps } from "./SoftDivider";
 
+export { SoftKnob } from "./SoftKnob";
+export type { SoftKnobProps } from "./SoftKnob";
+
+export { SoftVerticalSlider } from "./SoftVerticalSlider";
+export type { SoftVerticalSliderProps } from "./SoftVerticalSlider";
+
+export { SoftGauge } from "./SoftGauge";
+export type { SoftGaugeProps, SoftGaugeSegment } from "./SoftGauge";
+
+export { SoftStepper } from "./SoftStepper";
+export type { SoftStepperProps } from "./SoftStepper";
+
+export { SoftRating } from "./SoftRating";
+export type { SoftRatingProps } from "./SoftRating";
+
+export { SoftSegmentedControl } from "./SoftSegmentedControl";
+export type {
+  SoftSegmentedControlProps,
+  SegmentOption,
+} from "./SoftSegmentedControl";
+
 // Re-export core types for convenience
-export type { Elevation, AuraformTokens } from "@auraform/core";
+export type { Elevation, AuraformTokens, ColorMode } from "@auraform/core";

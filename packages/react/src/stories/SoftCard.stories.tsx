@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftCard } from "../SoftCard";
 
 const meta: Meta<typeof SoftCard> = {
-  title: "Components/SoftCard",
+  title: "Display/SoftCard",
   component: SoftCard,
   argTypes: {
     elevation: {

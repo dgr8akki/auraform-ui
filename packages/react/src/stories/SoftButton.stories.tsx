@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftButton } from "../SoftButton";
 
 const meta: Meta<typeof SoftButton> = {
-  title: "Components/SoftButton",
+  title: "Form/SoftButton",
   component: SoftButton,
   argTypes: {
     elevation: {

@@ -72,7 +72,7 @@ export const SoftAvatar = forwardRef<HTMLDivElement, SoftAvatarProps>(
             style={{
               fontSize: px * 0.38,
               fontWeight: 600,
-              color: "inherit",
+              color: tokens.textColor,
               textTransform: "uppercase",
               userSelect: "none",
             }}

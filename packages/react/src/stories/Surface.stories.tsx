@@ -26,7 +26,7 @@ export const Default: Story = {
   args: {},
   render: (args) => (
     <Surface {...args}>
-      <p style={{ margin: 0, color: "#555" }}>Neumorphic Surface</p>
+      <p style={{ margin: 0 }}>Neumorphic Surface</p>
     </Surface>
   ),
 };
@@ -36,7 +36,7 @@ export const Elevations: Story = {
     <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
       {(["flat", "low", "medium", "high"] as const).map((elevation) => (
         <Surface key={elevation} elevation={elevation}>
-          <p style={{ margin: 0, color: "#555" }}>{elevation}</p>
+          <p style={{ margin: 0 }}>{elevation}</p>
         </Surface>
       ))}
     </div>
@@ -47,7 +47,7 @@ export const Inset: Story = {
   args: { isInset: true },
   render: (args) => (
     <Surface {...args}>
-      <p style={{ margin: 0, color: "#555" }}>Inset (pressed) surface</p>
+      <p style={{ margin: 0 }}>Inset (pressed) surface</p>
     </Surface>
   ),
 };

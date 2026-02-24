@@ -66,6 +66,9 @@ On the web, `AuraformProvider` injects CSS custom properties on its wrapper `<di
 --af-light-shadow: #f5f0f0;
 --af-dark-shadow: #b8b8c1;
 --af-border: none;
+--af-text: #333333;
+--af-text-secondary: #666666;
+--af-border-subtle: rgba(0, 0, 0, 0.12);
 ```
 
 You can use these in your own CSS or inline styles:
@@ -84,17 +87,19 @@ You can use these in your own CSS or inline styles:
 
 ## Dark Mode
 
-To create a dark neumorphic theme, use a dark mid-tone as the base color:
+Auraform has built-in dark mode support via the `mode` prop on `AuraformProvider`. When set to `"auto"` (the default), it auto-detects from the base color’s lightness.
 
 ```tsx
 function App() {
   const [isDark, setIsDark] = useState(false);
 
   return (
-    <AuraformProvider baseColor={isDark ? '#2d2d3d' : '#e0e0e0'}>
+    <AuraformProvider
+      baseColor={isDark ? '#2d2d2d' : '#e0e0e0'}
+      mode="auto"
+    >
       <div style={{
-        background: isDark ? '#2d2d3d' : '#e0e0e0',
-        color: isDark ? '#e0e0e0' : '#333',
+        background: isDark ? '#2d2d2d' : '#e0e0e0',
         minHeight: '100vh',
       }}>
         <SoftButton onClick={() => setIsDark(!isDark)}>
@@ -106,10 +111,22 @@ function App() {
 }
 ```
 
+In dark mode, the token engine automatically:
+- Sets `textColor` to `#f0f0f0` and `textSecondary` to `#a0a0a0`
+- Uses `rgba(255, 255, 255, 0.12)` for `borderSubtle` (instead of black)
+- Uses white-tinted outlines for accessibility borders
+- All components use these tokens, so **no manual color overrides are needed**
+
+You can also force a mode explicitly:
+
+```tsx
+<AuraformProvider baseColor="#e0e0e0" mode="dark" />  {/* Force dark */}
+<AuraformProvider baseColor="#2d2d2d" mode="light" /> {/* Force light */}
+```
+
 **Tips for dark themes:**
-- Use colors in the `#2a–#3a` lightness range (e.g. `#2d2d3d`, `#303040`)
+- Use colors in the `#2a–#3a` lightness range (e.g. `#2d2d2d`, `#1a1a2e`, `#2d1b2e`)
 - Increase `intensity` slightly (18–22) for better shadow visibility
-- Set text color to a light value — components inherit `color` from their parent
 
 ---
 

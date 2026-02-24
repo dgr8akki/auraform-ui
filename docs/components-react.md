@@ -24,9 +24,10 @@ Root context provider that computes neumorphic tokens and injects CSS custom pro
 |------|------|---------|-------------|
 | `baseColor` | `string` | **required** | Hex color for the background theme |
 | `intensity` | `number` | `15` | Lightness shift (%) for shadow generation |
+| `mode` | `"light" \| "dark" \| "auto"` | `"auto"` | Color mode. `"auto"` derives from base color lightness. |
 | `children` | `ReactNode` | — | App content |
 
-**CSS custom properties set:** `--af-bg`, `--af-light-shadow`, `--af-dark-shadow`, `--af-border`
+**CSS custom properties set:** `--af-bg`, `--af-light-shadow`, `--af-dark-shadow`, `--af-border`, `--af-text`, `--af-text-secondary`, `--af-border-subtle`
 
 ### `useAuraform()`
 
@@ -271,6 +272,152 @@ Range slider with neumorphic inset track, extruded thumb, and accent fill.
 
 ---
 
+### `SoftVerticalSlider`
+
+Vertical volume/mixer-style slider with inset track and extruded thumb.
+
+```tsx
+<SoftVerticalSlider
+  defaultValue={60}
+  height={200}
+  aria-label="Volume"
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Controlled value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `step` | `number` | `1` | Step increment |
+| `onChange` | `(value: number) => void` | — | Value change handler |
+| `accentColor` | `string` | `"#4A90D9"` | Color of the filled track |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `height` | `number` | `200` | Track height in px |
+| `aria-label` | `string` | — | Accessible label |
+
+**Keyboard:** Arrow Up/Right = increase, Arrow Down/Left = decrease. Home = max, End = min.
+
+---
+
+### `SoftKnob`
+
+Rotary dial control with SVG arc indicator. Drag vertically or use arrow keys.
+
+```tsx
+<SoftKnob
+  defaultValue={50}
+  size={80}
+  aria-label="EQ Bass"
+  onChange={(val) => console.log(val)}
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Controlled value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `step` | `number` | `1` | Step increment |
+| `onChange` | `(value: number) => void` | — | Value change handler |
+| `size` | `number` | `80` | Knob diameter in px |
+| `accentColor` | `string` | `"#4A90D9"` | Arc and indicator color |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `aria-label` | `string` | — | Accessible label |
+
+**Interaction:** Vertical drag (up = increase), arrow keys, Home/End. `role="slider"` with full ARIA.
+
+---
+
+### `SoftStepper`
+
+Numeric increment/decrement counter with extruded +/− buttons and inset value display.
+
+```tsx
+<SoftStepper
+  defaultValue={1}
+  min={0}
+  max={10}
+  aria-label="Quantity"
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Controlled value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `min` | `number` | `-Infinity` | Minimum value |
+| `max` | `number` | `Infinity` | Maximum value |
+| `step` | `number` | `1` | Step increment |
+| `onChange` | `(value: number) => void` | — | Value change handler |
+| `accentColor` | `string` | `"#4A90D9"` | Button accent color |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `aria-label` | `string` | — | Accessible label |
+
+**ARIA:** `role="spinbutton"` with arrow key support.
+
+---
+
+### `SoftRating`
+
+Interactive star rating with hover preview and keyboard navigation.
+
+```tsx
+<SoftRating
+  defaultValue={3}
+  max={5}
+  onChange={(val) => console.log(val)}
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | — | Controlled value |
+| `defaultValue` | `number` | `0` | Initial value (uncontrolled) |
+| `max` | `number` | `5` | Number of stars |
+| `onChange` | `(value: number) => void` | — | Rating change handler |
+| `size` | `number` | `32` | Star size in px |
+| `accentColor` | `string` | `"#F5A623"` | Filled star color |
+| `readOnly` | `boolean` | `false` | Read-only mode |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `aria-label` | `string` | — | Accessible label |
+
+**ARIA:** `role="radiogroup"` with each star as `role="radio"`. Arrow keys navigate between stars.
+
+---
+
+### `SoftSegmentedControl`
+
+iOS-style segmented toggle with animated sliding active segment.
+
+```tsx
+<SoftSegmentedControl
+  options={[
+    { value: 'day', label: 'Day' },
+    { value: 'week', label: 'Week' },
+    { value: 'month', label: 'Month' },
+  ]}
+  defaultValue="week"
+  aria-label="Period"
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `options` | `SegmentOption[]` | **required** | `{ value: string, label: string }[]` |
+| `value` | `string` | — | Controlled selected value |
+| `defaultValue` | `string` | first option | Initial selected value |
+| `onChange` | `(value: string) => void` | — | Selection change handler |
+| `accentColor` | `string` | `"#4A90D9"` | Active segment text color |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `aria-label` | `string` | — | Accessible label |
+
+**ARIA:** `role="radiogroup"` with each segment as `role="radio"`. Arrow keys cycle options.
+
+---
+
 ## Display & Feedback
 
 ### `SoftCard`
@@ -351,6 +498,39 @@ Compact label/tag with selectable and removable modes.
 | `disabled` | `boolean` | `false` | Disabled state |
 
 **Dual-signaling:** Selected chips use accent color fill AND inset shadow.
+
+---
+
+### `SoftGauge`
+
+Semicircular dashboard gauge with needle, arc fill, and optional color segments.
+
+```tsx
+<SoftGauge
+  value={72}
+  label="CPU"
+  unit="%"
+  segments={[
+    { until: 50, color: '#27AE60' },
+    { until: 80, color: '#F5A623' },
+    { until: 100, color: '#E74C3C' },
+  ]}
+/>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | **required** | Current value |
+| `min` | `number` | `0` | Minimum value |
+| `max` | `number` | `100` | Maximum value |
+| `label` | `string` | — | Label below the value |
+| `unit` | `string` | `""` | Unit suffix (e.g. "%", "°C") |
+| `size` | `number` | `160` | Gauge diameter in px |
+| `accentColor` | `string` | `"#4A90D9"` | Default fill color |
+| `segments` | `SoftGaugeSegment[]` | — | Color breakpoints: `{ until: number, color: string }[]` |
+| `aria-label` | `string` | — | Accessible label (falls back to `label`) |
+
+**ARIA:** `role="meter"`, `aria-valuenow`, `aria-valuemin`, `aria-valuemax`.
 
 ---
 

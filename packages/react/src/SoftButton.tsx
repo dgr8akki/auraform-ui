@@ -67,7 +67,7 @@ export const SoftButton = forwardRef<HTMLButtonElement, SoftButtonProps>(
             padding: "12px 24px",
             cursor: disabled ? "not-allowed" : "pointer",
             opacity: disabled ? 0.6 : 1,
-            color: isPrimary ? accentColor : "inherit",
+            color: isPrimary ? accentColor : tokens.textColor,
             fontWeight: isPrimary ? 600 : 400,
             fontSize: "inherit",
             fontFamily: "inherit",

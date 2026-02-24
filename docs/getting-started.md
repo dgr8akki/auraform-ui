@@ -48,6 +48,7 @@ function App() {
 |------|------|---------|-------------|
 | `baseColor` | `string` | — | Hex color for the background. All tokens are derived from this. |
 | `intensity` | `number` | `15` | Lightness shift (%) for shadow generation. Higher = more contrast. |
+| `mode` | `"light" \| "dark" \| "auto"` | `"auto"` | Color mode. `"auto"` detects from base color lightness. |
 
 ### React Native
 
@@ -120,7 +121,8 @@ import { useAuraform } from '@auraform/react';
 
 function CustomComponent() {
   const { tokens, baseColor } = useAuraform();
-  // tokens.background, tokens.lightShadow, tokens.darkShadow, tokens.outline
+  // tokens.mode, tokens.background, tokens.lightShadow, tokens.darkShadow,
+  // tokens.outline, tokens.textColor, tokens.textSecondary, tokens.borderSubtle
   return <div style={{ background: tokens.background }}>...</div>;
 }
 ```

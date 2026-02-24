@@ -15,6 +15,7 @@ Auraform solves the core problems of traditional neumorphism — poor contrast, 
 
 ## Features
 
+- **Dark Mode** — Built-in `mode` prop (`"light"` / `"dark"` / `"auto"`) with auto-detection from base color lightness. Semantic tokens for text, borders, and outlines adapt automatically.
 - **Automatic Contrast Guardrails** — Shadow tokens are generated from your base color using HSL math. If the contrast ratio falls below 3.0:1, a subtle border is automatically injected.
 - **Dual-Signaling** — Active states use both shadow depth *and* accent color, so they remain clear for color-blind users.
 - **Focus Management** — Every component includes a dedicated `FocusRing` that follows the neumorphic shape.
@@ -81,10 +82,10 @@ function App() {
 
 ---
 
-## Components (19 total)
+## Components (25 total)
 
 ### Provider & Primitives
-- **`AuraformProvider`** — Root context provider. Computes tokens from `baseColor` and injects CSS variables.
+- **`AuraformProvider`** — Root context provider. Computes tokens from `baseColor` and injects CSS variables. Supports `mode` prop for dark mode.
 - **`Surface`** — Base neumorphic building block with elevation and inset modes.
 - **`FocusRing`** — Accessible focus indicator overlay.
 
@@ -96,10 +97,16 @@ function App() {
 - **`SoftRadioGroup` + `SoftRadio`** — Radio buttons with arrow-key navigation.
 - **`SoftSwitch`** — Toggle using depth + accent color for state.
 - **`SoftSlider`** — Range slider with inset track and draggable thumb.
+- **`SoftVerticalSlider`** — Volume/mixer-style vertical slider.
+- **`SoftKnob`** — Rotary dial control with SVG arc indicator.
+- **`SoftStepper`** — Numeric increment/decrement counter.
+- **`SoftRating`** — Interactive star rating with hover preview.
+- **`SoftSegmentedControl`** — iOS-style segmented toggle with animated sliding.
 
 ### Display & Feedback
 - **`SoftCard`** — Semantic card with header/footer/media slots.
 - **`SoftProgress`** — Linear and circular progress (determinate + indeterminate).
+- **`SoftGauge`** — Semicircular dashboard gauge with needle and color segments.
 - **`SoftChip`** — Selectable/removable tag component.
 - **`SoftBadge`** — Notification count/dot overlay.
 - **`SoftAvatar`** — Image or initials avatar with fallback.
@@ -131,7 +138,7 @@ Use `getNeumorphicTokens()` from `@auraform/core` directly for custom integratio
 import { getNeumorphicTokens } from "@auraform/core";
 
 const tokens = getNeumorphicTokens("#e0e0e0", { intensity: 15 });
-// → { background, lightShadow, darkShadow, outline }
+// → { mode, background, lightShadow, darkShadow, outline, textColor, textSecondary, borderSubtle }
 ```
 
 ---
@@ -178,7 +185,7 @@ auraform-ui/
 │   │       ├── contrast.ts     # WCAG luminance & contrast ratio
 │   │       ├── tokens.ts       # getNeumorphicTokens()
 │   │       └── types.ts        # TypeScript interfaces
-│   ├── react/         # @auraform/react — 19 web components
+│   ├── react/         # @auraform/react — 25 web components
 │   │   ├── .storybook/
 │   │   └── src/
 │   │       ├── AuraformProvider.tsx

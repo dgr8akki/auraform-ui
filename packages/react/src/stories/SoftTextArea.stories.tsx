@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftTextArea } from "../SoftTextArea";
 
 const meta: Meta<typeof SoftTextArea> = {
-  title: "Components/SoftTextArea",
+  title: "Form/SoftTextArea",
   component: SoftTextArea,
   argTypes: {
     accentColor: { control: "color" },

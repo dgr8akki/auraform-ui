@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftInput } from "../SoftInput";
 
 const meta: Meta<typeof SoftInput> = {
-  title: "Components/SoftInput",
+  title: "Form/SoftInput",
   component: SoftInput,
   argTypes: {
     borderRadius: { control: { type: "range", min: 0, max: 40, step: 2 } },

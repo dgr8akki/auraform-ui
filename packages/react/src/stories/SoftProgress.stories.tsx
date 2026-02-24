@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftProgress } from "../SoftProgress";
 
 const meta: Meta<typeof SoftProgress> = {
-  title: "Components/SoftProgress",
+  title: "Display/SoftProgress",
   component: SoftProgress,
   argTypes: {
     value: { control: { type: "range", min: 0, max: 100, step: 1 } },

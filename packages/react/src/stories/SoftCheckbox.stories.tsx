@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftCheckbox } from "../SoftCheckbox";
 
 const meta: Meta<typeof SoftCheckbox> = {
-  title: "Components/SoftCheckbox",
+  title: "Form/SoftCheckbox",
   component: SoftCheckbox,
   argTypes: {
     accentColor: { control: "color" },
@@ -43,7 +43,7 @@ export const Controlled: Story = {
           onChange={setChecked}
           label="Controlled checkbox"
         />
-        <span style={{ color: "#555", fontSize: 14 }}>
+        <span style={{ fontSize: 14 }}>
           State: {checked ? "Checked" : "Unchecked"}
         </span>
       </div>

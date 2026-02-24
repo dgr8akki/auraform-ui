@@ -3,6 +3,7 @@ import {
   getNeumorphicTokens,
   type AuraformTokens,
   type TokenOptions,
+  type ColorMode,
 } from "@auraform/core";
 
 export interface AuraformContextValue {
@@ -17,6 +18,8 @@ export interface AuraformProviderProps {
   baseColor: string;
   /** Override the default shadow intensity (default: 15) */
   intensity?: number;
+  /** Color mode: "light", "dark", or "auto" (auto-detects from base color lightness). Default: "auto" */
+  mode?: ColorMode | "auto";
   children: React.ReactNode;
 }
 
@@ -27,11 +30,12 @@ export interface AuraformProviderProps {
 export function AuraformProvider({
   baseColor,
   intensity,
+  mode = "auto",
   children,
 }: AuraformProviderProps) {
   const tokens = useMemo(
-    () => getNeumorphicTokens(baseColor, { intensity } as TokenOptions),
-    [baseColor, intensity]
+    () => getNeumorphicTokens(baseColor, { intensity, mode } as TokenOptions),
+    [baseColor, intensity, mode]
   );
 
   const contextValue = useMemo<AuraformContextValue>(
@@ -44,6 +48,9 @@ export function AuraformProvider({
     "--af-light-shadow": tokens.lightShadow,
     "--af-dark-shadow": tokens.darkShadow,
     "--af-border": tokens.outline,
+    "--af-text": tokens.textColor,
+    "--af-text-secondary": tokens.textSecondary,
+    "--af-border-subtle": tokens.borderSubtle,
   } as React.CSSProperties;
 
   return (

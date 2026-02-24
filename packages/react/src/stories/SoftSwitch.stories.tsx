@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SoftSwitch } from "../SoftSwitch";
 
 const meta: Meta<typeof SoftSwitch> = {
-  title: "Components/SoftSwitch",
+  title: "Form/SoftSwitch",
   component: SoftSwitch,
   argTypes: {
     accentColor: { control: "color" },
@@ -42,7 +42,7 @@ export const Controlled: Story = {
           onChange={setChecked}
           aria-label="Controlled toggle"
         />
-        <span style={{ color: "#555" }}>
+        <span>
           {checked ? "On" : "Off"}
         </span>
       </div>

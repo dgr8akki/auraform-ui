@@ -15,11 +15,19 @@ import { getNeumorphicTokens } from '@auraform/core';
 
 const tokens = getNeumorphicTokens('#e0e0e0');
 // {
-//   background:   '#e0e0e0',
-//   lightShadow:  '#f5f0f0',   // L + 15%, S - 5%
-//   darkShadow:   '#b8b8c1',   // L - 15%, S + 10%
-//   outline:      'none'        // or '1px solid rgba(0,0,0,0.1)' if low contrast
+//   mode:          'light',
+//   background:    '#e0e0e0',
+//   lightShadow:   '#f5f0f0',   // L + 15%, S - 5%
+//   darkShadow:    '#b8b8c1',   // L - 15%, S + 10%
+//   outline:       'none',       // or '1px solid rgba(...)' if low contrast
+//   textColor:     '#333333',    // adapts to mode
+//   textSecondary: '#666666',
+//   borderSubtle:  'rgba(0, 0, 0, 0.12)',
 // }
+
+// Dark mode:
+const darkTokens = getNeumorphicTokens('#2d2d2d', { mode: 'dark' });
+// → textColor: '#f0f0f0', borderSubtle: 'rgba(255, 255, 255, 0.12)', etc.
 ```
 
 **Parameters:**
@@ -28,27 +36,40 @@ const tokens = getNeumorphicTokens('#e0e0e0');
 |-------|------|-------------|
 | `baseColor` | `string` | Hex color (with or without `#` prefix) |
 | `options.intensity` | `number` | Lightness shift percentage. Default: `15`. |
+| `options.mode` | `ColorMode \| "auto"` | `"light"`, `"dark"`, or `"auto"` (derives from lightness). Default: `"auto"`. |
 
 **Returns:** `AuraformTokens`
 
 **Algorithm:**
 1. Convert base color to HSL
-2. **Light shadow:** H stays, S − 5%, L + intensity%
-3. **Dark shadow:** H stays, S + 10%, L − intensity%
-4. **Contrast check:** If the contrast ratio between the light shadow and the base is below `3.0:1`, a `1px solid rgba(0,0,0,0.1)` border is auto-injected
+2. Resolve mode: if `"auto"`, uses `"dark"` when lightness < 50, otherwise `"light"`
+3. **Light shadow:** H stays, S − 5%, L + intensity%
+4. **Dark shadow:** H stays, S + 10%, L − intensity%
+5. **Contrast check:** If the contrast ratio between the light shadow and the base is below `3.0:1`, a border is auto-injected (white-tinted in dark mode, black-tinted in light mode)
+6. **Semantic colors:** `textColor`, `textSecondary`, and `borderSubtle` are set based on the resolved mode
 
 ---
 
 ## Types
 
+### `ColorMode`
+
+```ts
+type ColorMode = 'light' | 'dark';
+```
+
 ### `AuraformTokens`
 
 ```ts
 interface AuraformTokens {
+  mode: ColorMode;       // Resolved color mode
   background: string;    // Original base color as hex
   lightShadow: string;   // Lighter shadow (highlight) as hex
   darkShadow: string;    // Darker shadow as hex
-  outline: string;       // '1px solid rgba(0,0,0,0.1)' or 'none'
+  outline: string;       // '1px solid rgba(...)' or 'none'
+  textColor: string;     // Primary text color for the mode
+  textSecondary: string; // Secondary/muted text color
+  borderSubtle: string;  // Subtle border color for inputs, dividers, etc.
 }
 ```
 
@@ -91,7 +112,8 @@ interface RGBColor { r: number; g: number; b: number; }  // 0-255 each
 
 ```ts
 interface TokenOptions {
-  intensity?: number;  // Default: 15
+  intensity?: number;           // Default: 15
+  mode?: ColorMode | 'auto';   // Default: 'auto'
 }
 ```
 

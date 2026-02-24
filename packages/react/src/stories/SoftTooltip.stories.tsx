@@ -5,7 +5,7 @@ import { SoftButton } from "../SoftButton";
 import { SoftIconButton } from "../SoftIconButton";
 
 const meta: Meta<typeof SoftTooltip> = {
-  title: "Components/SoftTooltip",
+  title: "Navigation/SoftTooltip",
   component: SoftTooltip,
   argTypes: {
     content: { control: "text" },
