@@ -35,7 +35,7 @@ export const Surface = forwardRef<HTMLDivElement, SurfaceProps>(
     ref
   ) {
     const { tokens } = useAuraform();
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocusVisible, setIsFocusVisible] = useState(false);
 
     const { distance, blur } = ELEVATION_MAP[elevation];
 
@@ -55,20 +55,23 @@ export const Surface = forwardRef<HTMLDivElement, SurfaceProps>(
             border: tokens.outline,
             borderRadius,
             padding: 16,
+            outline: "none",
             ...style,
           }}
           whileTap={
             elevation !== "flat" ? { boxShadow: pressedShadow } : undefined
           }
           transition={{ duration: 0.15, ease: "easeInOut" }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(e) => {
+            if (e.target.matches(":focus-visible")) setIsFocusVisible(true);
+          }}
+          onBlur={() => setIsFocusVisible(false)}
           tabIndex={0}
           {...motionProps}
         >
           {children}
         </motion.div>
-        <FocusRing visible={isFocused} borderRadius={borderRadius} />
+        <FocusRing visible={isFocusVisible} borderRadius={borderRadius} />
       </div>
     );
   }

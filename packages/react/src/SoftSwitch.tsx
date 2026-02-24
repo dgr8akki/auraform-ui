@@ -37,7 +37,7 @@ export const SoftSwitch = forwardRef<HTMLButtonElement, SoftSwitchProps>(
   ) {
     const { tokens } = useAuraform();
     const [internalChecked, setInternalChecked] = useState(defaultChecked);
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocusVisible, setIsFocusVisible] = useState(false);
 
     const isChecked = controlledChecked ?? internalChecked;
 
@@ -66,8 +66,10 @@ export const SoftSwitch = forwardRef<HTMLButtonElement, SoftSwitchProps>(
           aria-label={ariaProps["aria-label"]}
           disabled={disabled}
           onClick={handleToggle}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(e) => {
+            if (e.target.matches(":focus-visible")) setIsFocusVisible(true);
+          }}
+          onBlur={() => setIsFocusVisible(false)}
           style={{
             width: 52,
             height: 28,
@@ -97,7 +99,7 @@ export const SoftSwitch = forwardRef<HTMLButtonElement, SoftSwitchProps>(
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
         </motion.button>
-        <FocusRing visible={isFocused} borderRadius={14} />
+        <FocusRing visible={isFocusVisible} borderRadius={14} />
       </div>
     );
   }

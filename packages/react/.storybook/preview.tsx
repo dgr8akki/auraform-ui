@@ -1,5 +1,5 @@
 import React from "react";
-import type { Preview } from "@storybook/react";
+import type { Preview } from "storybook/internal/types";
 import { AuraformProvider } from "../src/AuraformProvider";
 
 const preview: Preview = {

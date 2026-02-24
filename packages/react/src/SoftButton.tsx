@@ -41,7 +41,7 @@ export const SoftButton = forwardRef<HTMLButtonElement, SoftButtonProps>(
     ref
   ) {
     const { tokens } = useAuraform();
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocusVisible, setIsFocusVisible] = useState(false);
 
     const { distance, blur } = ELEVATION_MAP[elevation];
 
@@ -81,14 +81,16 @@ export const SoftButton = forwardRef<HTMLButtonElement, SoftButtonProps>(
               : undefined
           }
           transition={{ duration: 0.15, ease: "easeInOut" }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(e) => {
+            if (e.target.matches(":focus-visible")) setIsFocusVisible(true);
+          }}
+          onBlur={() => setIsFocusVisible(false)}
           aria-disabled={disabled}
           {...motionProps}
         >
           {children}
         </motion.button>
-        <FocusRing visible={isFocused} borderRadius={borderRadius} />
+        <FocusRing visible={isFocusVisible} borderRadius={borderRadius} />
       </div>
     );
   }

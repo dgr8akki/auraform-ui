@@ -22,7 +22,7 @@ export const SoftInput = forwardRef<HTMLInputElement, SoftInputProps>(
     ref
   ) {
     const { tokens } = useAuraform();
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocusVisible, setIsFocusVisible] = useState(false);
 
     const insetShadow = `inset 4px 4px 8px ${tokens.darkShadow}, inset -4px -4px 8px ${tokens.lightShadow}`;
 
@@ -34,7 +34,7 @@ export const SoftInput = forwardRef<HTMLInputElement, SoftInputProps>(
             background: tokens.background,
             boxShadow: insetShadow,
             border: tokens.outline,
-            borderBottom: `2px solid ${isFocused ? accentColor : "rgba(0, 0, 0, 0.15)"}`,
+borderBottom: `2px solid ${isFocusVisible ? accentColor : "rgba(0, 0, 0, 0.15)"}`,
             borderRadius,
             padding: "12px 16px",
             fontSize: "inherit",
@@ -46,16 +46,16 @@ export const SoftInput = forwardRef<HTMLInputElement, SoftInputProps>(
             ...style,
           }}
           onFocus={(e) => {
-            setIsFocused(true);
+            if (e.target.matches(":focus-visible")) setIsFocusVisible(true);
             inputProps.onFocus?.(e);
           }}
           onBlur={(e) => {
-            setIsFocused(false);
+            setIsFocusVisible(false);
             inputProps.onBlur?.(e);
           }}
           {...inputProps}
         />
-        <FocusRing visible={isFocused} borderRadius={borderRadius} />
+        <FocusRing visible={isFocusVisible} borderRadius={borderRadius} />
       </div>
     );
   }
