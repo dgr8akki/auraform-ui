@@ -70,12 +70,12 @@ Run tests:
 pnpm --filter @auraform/native test
 ```
 
-## � Storybook
+## 📕 Storybook
 
 `@auraform/native` provides native components and does not include a Storybook instance. The web component storybook is available in the React package:
 
 https://dgr8akki.github.io/auraform-ui/
 
-## �📄 License
+## 🪪 License
 
 MIT

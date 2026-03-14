@@ -63,10 +63,10 @@ Run tests:
 pnpm --filter @auraform/react test
 ```
 
-## � Storybook
+## 📕 Storybook
 
 Live demo: https://dgr8akki.github.io/auraform-ui/
 
-## �📄 License
+## 🪪 License
 
 MIT

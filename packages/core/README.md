@@ -47,12 +47,12 @@ Run tests:
 pnpm --filter @auraform/core test
 ```
 
-## � Storybook
+## 📕 Storybook
 
 `@auraform/core` provides shared token logic and does not have its own Storybook. For component demos, see the React package storybook:
 
 https://dgr8akki.github.io/auraform-ui/
 
-## �📄 License
+## 🪪 License
 
 MIT
