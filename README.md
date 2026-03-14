@@ -32,6 +32,12 @@ Auraform solves the core problems of traditional neumorphism — poor contrast, 
 | `@auraform/react` | React web components with Framer Motion animations |
 | `@auraform/native` | React Native components with SVG shadows and OS accessibility detection |
 
+## Package README links
+
+- [@auraform/core](packages/core/README.md)
+- [@auraform/react](packages/react/README.md)
+- [@auraform/native](packages/native/README.md)
+
 ---
 
 ## Quick Start
