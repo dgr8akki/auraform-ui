@@ -1,6 +1,6 @@
 {
   "name": "@auraform/react",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Accessibility-first Neumorphic React components for the web",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
