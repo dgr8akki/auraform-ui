@@ -1,0 +1,97 @@
+export const metadata = {
+  title: "Getting Started",
+  description: "Install and set up Auraform UI in your React project.",
+};
+
+# Getting Started
+
+## Installation
+
+### React (Web)
+
+```bash
+npm install @auraform/react @auraform/core
+```
+
+**Peer dependencies:** `react >= 18`, `framer-motion >= 10`
+
+### React Native
+
+```bash
+npm install @auraform/native @auraform/core react-native-shadow-2 react-native-svg
+```
+
+### Core only (for custom integrations)
+
+```bash
+npm install @auraform/core
+```
+
+---
+
+## Setting Up the Provider
+
+Every Auraform component reads its neumorphic tokens (background, shadows, borders) from a context provider. Wrap your app once at the root.
+
+```tsx
+import { AuraformProvider } from '@auraform/react';
+
+function App() {
+  return (
+    <AuraformProvider baseColor="#e0e0e0">
+      {/* All Auraform components go here */}
+    </AuraformProvider>
+  );
+}
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `baseColor` | `string` | — | Hex color for the background. All tokens are derived from this. |
+| `intensity` | `number` | `15` | Lightness shift (%) for shadow generation. Higher = more contrast. |
+| `mode` | `"light" \| "dark" \| "auto"` | `"auto"` | Color mode. `"auto"` detects from base color lightness. |
+
+---
+
+## Your First Component
+
+```tsx
+import { AuraformProvider, SoftButton, SoftInput } from '@auraform/react';
+
+function LoginForm() {
+  return (
+    <AuraformProvider baseColor="#e0e0e0">
+      <div style={{ padding: 40, background: '#e0e0e0', minHeight: '100vh' }}>
+        <h2>Sign In</h2>
+        <SoftInput placeholder="Email" type="email" />
+        <SoftInput placeholder="Password" type="password" />
+        <SoftButton variant="primary">Log In</SoftButton>
+      </div>
+    </AuraformProvider>
+  );
+}
+```
+
+---
+
+## Accessing Tokens Directly
+
+If you need the raw token values for custom styling, use the context hook:
+
+```tsx
+import { useAuraform } from '@auraform/react';
+
+function CustomComponent() {
+  const { tokens, baseColor } = useAuraform();
+  return <div style={{ background: tokens.background }}>...</div>;
+}
+```
+
+---
+
+## What's Next?
+
+- Browse the full [React component API →](/docs/components)
+- Learn about [theming and customization →](/docs/theming)
+- Understand the [accessibility features →](/docs/accessibility)
+- Read the [Core API reference →](/docs/core-api)

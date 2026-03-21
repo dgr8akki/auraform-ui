@@ -1,0 +1,88 @@
+export const metadata = {
+  title: "Accessibility",
+  description: "How Auraform UI solves neumorphism's accessibility challenges.",
+};
+
+# Accessibility
+
+Neumorphic design has a well-known accessibility problem: low-contrast soft shadows make it hard for many users to distinguish UI elements from the background. Auraform UI exists to solve this.
+
+Every component in the library is built with accessibility as a first-class concern — not an afterthought.
+
+---
+
+## The Four Pillars
+
+### 1. Automatic Contrast Safety
+
+The `@auraform/core` token engine runs a **WCAG 2.0 contrast ratio check** after generating shadows:
+
+- If contrast between the light shadow and background is **≥ 3.0:1** → shadows alone are sufficient.
+- If it falls **below 3.0:1** → a subtle border is automatically injected so component edges remain perceptible.
+
+This happens automatically — no configuration needed.
+
+### 2. Dual-Signaling
+
+Traditional neumorphism often uses shadow depth as the **only** indicator of state. This fails for users who can't perceive subtle depth differences.
+
+Auraform uses **dual-signaling** — every state change communicates through two independent channels:
+
+| State | Channel 1 (Depth) | Channel 2 (Color) |
+|-------|-------------------|-------------------|
+| Button pressed | Extruded → inset shadow | Scale animation (0.98) |
+| Checkbox checked | Extruded → inset shadow | Accent color fill + checkmark icon |
+| Radio selected | Extruded → inset shadow | Accent-colored inner dot |
+| Switch on | Extruded → inset track | Accent color track fill |
+| Chip selected | Extruded → inset shadow | Accent color background |
+| Tab active | Flat → extruded shadow | Accent color text + bold weight |
+
+No information is conveyed through shadows alone.
+
+### 3. Keyboard-First Focus Management
+
+Every interactive component implements:
+
+- **`:focus-visible` detection** — Focus rings only appear on keyboard navigation, not on mouse clicks.
+- **`FocusRing` component** — A dedicated overlay rendering a visible ring following the neumorphic shape.
+- **Arrow-key navigation** — Composite widgets follow WAI-ARIA patterns (radio groups, tabs, sliders).
+- **Proper ARIA roles and attributes** — `role="switch"`, `role="slider"`, `role="tablist"`, `role="progressbar"`, etc.
+
+### 4. OS-Level Integration (React Native)
+
+On mobile, Auraform detects system accessibility settings:
+
+- **Reduce Motion** — Suppresses animations when the OS setting is enabled.
+- **Bold Text / Increase Contrast** — Automatically increases shadow intensity by +5 and shadow distance by 30%.
+
+---
+
+## Customizing for Accessibility
+
+### Increasing Contrast
+
+Raise the `intensity` prop on the provider:
+
+```tsx
+<AuraformProvider baseColor="#e0e0e0" intensity={25}>
+  {/* Stronger shadows, more visible edges */}
+</AuraformProvider>
+```
+
+### Custom Focus Ring
+
+Override the default focus ring:
+
+```tsx
+<FocusRing
+  visible={isFocused}
+  borderRadius={12}
+  color="#FF6600"     // High-visibility orange
+  width={3}           // Thicker ring
+  offset={4}          // More spacing
+/>
+```
+
+### Accent Color Choice
+
+Choose accent colors with sufficient contrast against your background. Rule of thumb: **4.5:1** contrast ratio for text, **3:1** for large UI elements.

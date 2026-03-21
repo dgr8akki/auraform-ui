@@ -1,0 +1,106 @@
+export const metadata = {
+  title: "React Native",
+  description: "Neumorphic primitives for React Native with SVG shadows and OS accessibility detection.",
+};
+
+# React Native Components
+
+`@auraform/native` provides neumorphic primitives for React Native with SVG-based shadows (consistent on iOS and Android) and automatic OS accessibility detection.
+
+> **Note:** The React Native package currently includes the provider, surface primitive, and accessibility hooks. Higher-level components are planned for a future release.
+
+---
+
+## Installation
+
+```bash
+npm install @auraform/native @auraform/core react-native-shadow-2 react-native-svg
+```
+
+If using Expo:
+```bash
+npx expo install react-native-svg
+npm install @auraform/native @auraform/core react-native-shadow-2
+```
+
+---
+
+## NativeAuraformProvider
+
+Root context provider. Computes neumorphic tokens and detects OS accessibility settings.
+
+```tsx
+import { NativeAuraformProvider } from '@auraform/native';
+
+function App() {
+  return (
+    <NativeAuraformProvider baseColor="#e0e0e0" intensity={15}>
+      {/* Your app */}
+    </NativeAuraformProvider>
+  );
+}
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `baseColor` | `string` | **required** | Hex color for the background theme |
+| `intensity` | `number` | `15` | Lightness shift (%) for shadow generation |
+| `children` | `ReactNode` | — | App content |
+
+When OS **Bold Text** is enabled, intensity is automatically increased by +5.
+
+---
+
+## NativeSurface
+
+Base neumorphic building block using `react-native-shadow-2` for SVG shadows.
+
+```tsx
+<NativeSurface elevation="medium" borderRadius={16}>
+  <Text>Hello from a neumorphic surface!</Text>
+</NativeSurface>
+```
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `elevation` | `Elevation` | `"medium"` | Shadow depth level |
+| `isInset` | `boolean` | `false` | Renders as flat view (inset not natively supported) |
+| `borderRadius` | `number` | `12` | Border radius in px |
+| `style` | `ViewStyle` | — | Additional styles |
+
+---
+
+## Accessibility Hooks
+
+### `useReduceMotion()`
+
+Returns `true` when "Reduce Motion" is enabled.
+
+```tsx
+const reduceMotion = useReduceMotion();
+```
+
+### `useBoldText()`
+
+Returns `true` when "Bold Text" is enabled.
+
+```tsx
+const boldText = useBoldText();
+```
+
+---
+
+## useNativeAuraform()
+
+Hook to access tokens and accessibility state from context.
+
+```tsx
+const { tokens, baseColor, reduceMotion, highContrast } = useNativeAuraform();
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `tokens` | `AuraformTokens` | Generated neumorphic tokens |
+| `baseColor` | `string` | Original hex color |
+| `reduceMotion` | `boolean` | OS reduce motion setting |
+| `highContrast` | `boolean` | OS bold text setting |

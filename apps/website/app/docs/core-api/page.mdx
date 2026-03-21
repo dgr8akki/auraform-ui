@@ -1,0 +1,111 @@
+export const metadata = {
+  title: "Core API Reference",
+  description: "Token generation, color utilities, and contrast checking in @auraform/core.",
+};
+
+# Core API Reference
+
+`@auraform/core` is the platform-agnostic engine that powers both the React and React Native packages. It handles color math, contrast validation, and neumorphic token generation.
+
+---
+
+## Token Generation
+
+### `getNeumorphicTokens(baseColor, options?)`
+
+Generates a complete set of neumorphic design tokens from a single hex color.
+
+```ts
+import { getNeumorphicTokens } from '@auraform/core';
+
+const tokens = getNeumorphicTokens('#e0e0e0');
+// {
+//   mode:          'light',
+//   background:    '#e0e0e0',
+//   lightShadow:   '#f5f0f0',
+//   darkShadow:    '#b8b8c1',
+//   outline:       'none',
+//   textColor:     '#333333',
+//   textSecondary: '#666666',
+//   borderSubtle:  'rgba(0, 0, 0, 0.12)',
+// }
+```
+
+| Param | Type | Description |
+|-------|------|-------------|
+| `baseColor` | `string` | Hex color (with or without `#` prefix) |
+| `options.intensity` | `number` | Lightness shift percentage. Default: `15`. |
+| `options.mode` | `ColorMode \| "auto"` | `"light"`, `"dark"`, or `"auto"`. Default: `"auto"`. |
+
+**Algorithm:**
+1. Convert base color to HSL
+2. Resolve mode: `"dark"` when lightness &lt; 50, otherwise `"light"`
+3. Light shadow: H stays, S - 5%, L + intensity%
+4. Dark shadow: H stays, S + 10%, L - intensity%
+5. Contrast check: if below 3.0:1, a border is auto-injected
+6. Semantic colors set based on resolved mode
+
+---
+
+## Types
+
+```ts
+type ColorMode = 'light' | 'dark';
+
+interface AuraformTokens {
+  mode: ColorMode;
+  background: string;
+  lightShadow: string;
+  darkShadow: string;
+  outline: string;
+  textColor: string;
+  textSecondary: string;
+  borderSubtle: string;
+}
+
+type Elevation = 'flat' | 'low' | 'medium' | 'high';
+
+interface ShadowConfig {
+  distance: number;
+  blur: number;
+}
+
+const ELEVATION_MAP: Record<Elevation, ShadowConfig> = {
+  flat:   { distance: 0,  blur: 0  },
+  low:    { distance: 3,  blur: 6  },
+  medium: { distance: 6,  blur: 12 },
+  high:   { distance: 10, blur: 20 },
+};
+```
+
+---
+
+## Color Utilities
+
+Low-level functions for color conversion.
+
+| Function | Signature | Description |
+|----------|-----------|-------------|
+| `hexToRgb` | `(hex: string) → RGBColor` | Convert hex to RGB |
+| `rgbToHsl` | `(rgb: RGBColor) → HSLColor` | Convert RGB to HSL |
+| `hslToRgb` | `(hsl: HSLColor) → RGBColor` | Convert HSL to RGB |
+| `hexToHsl` | `(hex: string) → HSLColor` | Convert hex directly to HSL |
+| `hslToHex` | `(hsl: HSLColor) → string` | Convert HSL to hex string |
+| `rgbToHex` | `(rgb: RGBColor) → string` | Convert RGB to hex string |
+| `clamp` | `(value, min, max) → number` | Clamp a number within a range |
+
+---
+
+## Contrast Utilities
+
+### `relativeLuminance(hex)`
+
+Computes WCAG 2.0 relative luminance of a color.
+
+### `contrastRatio(color1, color2)`
+
+Returns the contrast ratio between two hex colors (range: 1 to 21).
+
+### `MIN_SHADOW_CONTRAST`
+
+The minimum contrast ratio threshold: `3.0`. When the shadow-to-background contrast falls below this, the engine auto-injects a visible border.

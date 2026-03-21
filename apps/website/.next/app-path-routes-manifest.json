@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/page": "/",
+  "/docs/core-api/page": "/docs/core-api",
+  "/docs/getting-started/page": "/docs/getting-started",
+  "/docs/react-native/page": "/docs/react-native",
+  "/docs/accessibility/page": "/docs/accessibility",
+  "/docs/components/page": "/docs/components",
+  "/docs/theming/page": "/docs/theming",
+  "/docs/components/[slug]/page": "/docs/components/[slug]"
+}

@@ -1,0 +1,143 @@
+export const metadata = {
+  title: "Theming",
+  description: "One-color theming system for Auraform UI components.",
+};
+
+# Theming
+
+Auraform's theming is deliberately simple: pass one color, get an entire neumorphic theme. No token files, no CSS-in-JS configuration — just a hex value.
+
+---
+
+## How It Works
+
+1. You pass a `baseColor` hex string to `AuraformProvider`.
+2. The `@auraform/core` engine converts it to HSL and generates:
+   - **Light shadow:** Lightness increased by `intensity`%, saturation decreased by 5%
+   - **Dark shadow:** Lightness decreased by `intensity`%, saturation increased by 10%
+   - **Border:** Auto-injected only if the shadow contrast is below 3.0:1
+3. Every component reads these tokens from context and applies them.
+
+---
+
+## Choosing a Base Color
+
+Neumorphism works best with **mid-tone** colors. Extremely light or dark colors compress the available range for shadow generation.
+
+| Base Color | Result |
+|------------|--------|
+| `#e0e0e0` | Classic light gray — excellent shadow visibility |
+| `#d0d0d0` | Slightly darker gray — strong depth |
+| `#f0e6d3` | Warm beige — soft, organic feel |
+| `#d3e0f0` | Cool blue — calm, professional |
+| `#e0d3f0` | Soft lavender — modern, creative |
+| `#ffffff` | Pure white — shadows will be faint, border auto-injected |
+| `#1a1a1a` | Near black — highlight shadow will be subtle, border auto-injected |
+
+---
+
+## Adjusting Intensity
+
+The `intensity` prop controls how far the shadow colors deviate from the base:
+
+```tsx
+{/* Subtle, soft shadows */}
+<AuraformProvider baseColor="#e0e0e0" intensity={10}>
+
+{/* Default — balanced */}
+<AuraformProvider baseColor="#e0e0e0" intensity={15}>
+
+{/* Bold, pronounced shadows */}
+<AuraformProvider baseColor="#e0e0e0" intensity={25}>
+```
+
+| Intensity | Light Shadow Shift | Dark Shadow Shift | Feel |
+|-----------|-------------------|-------------------|------|
+| `10` | L + 10% | L - 10% | Whisper-soft, minimal |
+| `15` | L + 15% | L - 15% | Default — balanced depth |
+| `20` | L + 20% | L - 20% | Noticeable, tactile |
+| `25` | L + 25% | L - 25% | Bold, high-contrast |
+
+---
+
+## CSS Custom Properties
+
+On the web, `AuraformProvider` injects CSS custom properties on its wrapper `<div>`:
+
+```css
+--af-bg: #e0e0e0;
+--af-light-shadow: #f5f0f0;
+--af-dark-shadow: #b8b8c1;
+--af-border: none;
+--af-text: #333333;
+--af-text-secondary: #666666;
+--af-border-subtle: rgba(0, 0, 0, 0.12);
+```
+
+---
+
+## Dark Mode
+
+Auraform has built-in dark mode support. When `mode` is `"auto"` (the default), it auto-detects from the base color's lightness.
+
+```tsx
+<AuraformProvider
+  baseColor={isDark ? '#2d2d2d' : '#e0e0e0'}
+  mode="auto"
+>
+```
+
+In dark mode, the token engine automatically adjusts `textColor`, `textSecondary`, and `borderSubtle` — no manual color overrides needed.
+
+**Tips for dark themes:** Use colors in the `#2a`–`#3a` lightness range. Increase `intensity` slightly (18–22) for better shadow visibility.
+
+---
+
+## Theme Presets
+
+Tested base colors that produce great neumorphic results:
+
+```tsx
+const themes = {
+  silver:    '#e0e0e0',
+  warmGray:  '#e8e0d8',
+  coolBlue:  '#d3e0f0',
+  lavender:  '#e0d3f0',
+  mint:      '#d3f0e0',
+  peach:     '#f0ddd3',
+  charcoal:  '#2d2d3d',
+  midnight:  '#1e2030',
+  slate:     '#303845',
+  espresso:  '#352820',
+};
+```
+
+---
+
+## Per-Component Accent Colors
+
+Each component can override its accent color:
+
+```tsx
+<SoftButton accentColor="#E74C3C" variant="primary">Delete</SoftButton>
+<SoftButton accentColor="#27AE60" variant="primary">Confirm</SoftButton>
+<SoftSwitch accentColor="#8E44AD" aria-label="Feature toggle" />
+```
+
+---
+
+## Nested Themes
+
+Nest providers to create sections with different themes:
+
+```tsx
+<AuraformProvider baseColor="#e0e0e0">
+  <Surface elevation="medium">Light section</Surface>
+
+  <AuraformProvider baseColor="#2d2d3d">
+    <Surface elevation="medium">Dark section</Surface>
+  </AuraformProvider>
+</AuraformProvider>
+```
+
+Each provider computes its own tokens independently, so nested themes work seamlessly.
