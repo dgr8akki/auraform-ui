@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({
@@ -54,16 +55,20 @@ export default function RootLayout({
             __html: `
               try {
                 const theme = localStorage.getItem('auraform-theme');
-                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                if (theme === 'light') {
+                  // User explicitly chose light — don't add dark class
+                } else {
                   document.documentElement.classList.add('dark');
                 }
-              } catch (e) {}
+              } catch (e) {
+                document.documentElement.classList.add('dark');
+              }
             `,
           }}
         />
       </head>
       <body className="font-sans bg-[#e0e0e0] text-[#333] dark:bg-[#2d2d2d] dark:text-[#f0f0f0] antialiased">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
