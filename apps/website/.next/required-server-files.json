@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/apahuja/personal/auraform-ui",
+    "outputFileTracingRoot": "/home/runner/work/auraform-ui/auraform-ui",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -158,7 +158,7 @@
       "middlewarePrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 11,
+      "cpus": 3,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -293,10 +293,10 @@
       "@auraform/core"
     ],
     "turbopack": {
-      "root": "/Users/apahuja/personal/auraform-ui"
+      "root": "/home/runner/work/auraform-ui/auraform-ui"
     }
   },
-  "appDir": "/Users/apahuja/personal/auraform-ui/apps/website",
+  "appDir": "/home/runner/work/auraform-ui/auraform-ui/apps/website",
   "relativeAppDir": "apps/website",
   "files": [
     ".next/routes-manifest.json",

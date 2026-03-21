@@ -1,4 +1,4 @@
-// File: /Users/apahuja/personal/auraform-ui/apps/website/app/docs/layout.tsx
+// File: /home/runner/work/auraform-ui/auraform-ui/apps/website/app/docs/layout.tsx
 import * as entry from '../../../../app/docs/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
